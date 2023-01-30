@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+  <title>Memory-Game</title>
+</head>
+
+<body>
+  <header class="header">
+    <h1> Memory-Game </h1>
+  </header>
+  <main class="mainContainer" id="mainContainer">
+    <section class="controls">
+      <div class="control__buttons">
+        <button class="btn" id="start__btn">Start</button>
+        <button class="restart__btn btn" id="restart__btn">Restart Game</button>
+      </div>
+      <div class="timerBox" id="timer">
+      </div>
+    </section>
+    
+
+    <section class="gameContainer">
+      <div id="gridGame" class="gridGame"></div>
+      <aside class="asideBar">
+        <h3>Your opened cards</h3>
+        <ul class="matchesList" id="matches">
+        </ul>
+      </aside>
+    </section>
+  </main>
+</body>
+
+</html>
