@@ -39,10 +39,6 @@ body {
   transition: transform 1s;
 }
 
-.cardContainer__inner.is-flipped {
-  transform: translateX(-100%) rotateY(-180deg);
-}
-
 .card {
   position: absolute;
   width: 100%;

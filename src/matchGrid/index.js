@@ -22,7 +22,7 @@ export class MatchGrid {
         this.columns = columns;
         this.rows = rows;
         this.timeLimit = timeLimit;
-
+        
         this.#grid = document.getElementById('gridGame');
         this.#matches = document.getElementById('matches');
         this.#popup = new Popup(this.#grid);
@@ -81,7 +81,7 @@ export class MatchGrid {
 
     #showMatchNumbers(value) {
         const matchNumber = new MatchNumber(value);
-        const matchElement = matchNumber.renderMatchNumber(); -
+        const matchElement = matchNumber.renderMatchNumber();
 
             this.#matches.insertAdjacentHTML('beforeend', matchElement);
     }
@@ -121,7 +121,12 @@ export class MatchGrid {
         const cellElement = offsetParent;
 
         Cell.flip(cellElement, false);
-        if (this.#cellData[0] && this.#cellData[0].cellId === cellId) return
+
+        if (this.#cellData[0] && this.#cellData[0].cellId === cellId) {
+            Cell.flip(cellElement, true);
+            this.#cellData = []
+            return
+        } 
 
         this.#cellData.push({ cellValue, cellId, cellElement });
 
@@ -155,7 +160,7 @@ export class MatchGrid {
             if (e && !paused) {
                 this.#timer.pause();
                 this.#addResumeButton();
-
+                clearTimeout(this.#timeIsOverTimeoutId);
                 this.#grid.style.pointerEvents = 'none';
             }
         });
@@ -173,6 +178,7 @@ export class MatchGrid {
                 this.#matches.removeChild(this.#matches.lastElementChild);
             }
             clearInterval(this.#timer.timeInterval);
+            this.#openedCellsNumber = 0;
 
             this.create();
             
@@ -202,10 +208,10 @@ export class MatchGrid {
 
     #timeIsOut() {
         const timerDeadline = this.#timer.getDeadline();
-
         clearTimeout(this.#timeIsOverTimeoutId);
 
         this.#timeIsOverTimeoutId = setTimeout(() => {
+            this.#grid.style.pointerEvents = 'none';
             this.#popup.createPopup('Time is up try again');
         }, timerDeadline);
     }
