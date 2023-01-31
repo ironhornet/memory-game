@@ -1,3 +1,5 @@
+import anime from "animejs";
+
 export class Cell {
     #newDiv;
 
@@ -10,9 +12,20 @@ export class Cell {
 
     static flip(element, back) {
         if (back) {
-            element.classList.remove('is-flipped');
+            anime({
+                targets: element,
+                translateX: "0",
+                rotateY: "0",
+                duration: 50,
+            });      
+    
         } else {
-            element.classList.toggle('is-flipped');
+            anime({
+                targets: element,
+                translateX: "-100%",
+                rotateY: "-180deg",
+                duration: 50,
+            });
         }
     }
 
